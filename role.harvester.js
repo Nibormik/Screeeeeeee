@@ -1,12 +1,11 @@
+let resourceFinder = require('resource.finder');
+
 let roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
 	    if(creep.store.getFreeCapacity() > 0) {
-            let sources = creep.pos.findClosestByPath(FIND_SOURCES)
-            if(creep.harvest(sources) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources, {visualizePathStyle: {stroke: '#ffaa00'}});
-            }
+            resourceFinder.pickup(creep,true)
         }
         else {
             let targets = creep.room.find(FIND_STRUCTURES, {
