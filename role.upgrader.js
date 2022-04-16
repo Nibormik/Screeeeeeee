@@ -13,9 +13,6 @@ let roleUpgrader = {
 	        creep.memory.upgrading = true;
 	        creep.say('⚡ upgrade');
 	    }
-        if (!creep.memory.upgrading) {
-            creep.memory.working = false;
-        }
 
 	    if(creep.memory.upgrading) {
             if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {

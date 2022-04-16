@@ -1,4 +1,4 @@
-let roleBuilder = {
+let finder = {
 
     /** Finds resources **/
     pickup: function(creep,harvest=false) {
@@ -52,6 +52,7 @@ let roleBuilder = {
                         structure.structureType == STRUCTURE_EXTENSION || 
                         structure.structureType == STRUCTURE_SPAWN) &&
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;}});
+            console.log(targets+creep.memory.job)
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
@@ -59,6 +60,7 @@ let roleBuilder = {
                 }
             }
             else {
+                mode = '';
                 creep.memory.working = false;
             }
         }
@@ -69,6 +71,7 @@ let roleBuilder = {
                         structure.structureType == STRUCTURE_STORAGE || 
                         structure.structureType == STRUCTURE_CONTAINER) &&
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;}});
+            console.log(targets+creep.memory.job)
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
@@ -76,6 +79,7 @@ let roleBuilder = {
                 }
             }
             else {
+                mode = '';
                 creep.memory.working = false;
             }
         }
@@ -85,6 +89,7 @@ let roleBuilder = {
                     return (
                         structure.structureType == STRUCTURE_TOWER) &&
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;}});
+            console.log(targets+creep.memory.job)
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
@@ -102,4 +107,4 @@ let roleBuilder = {
 	}
 };
 
-module.exports = roleBuilder;
+module.exports = finder;

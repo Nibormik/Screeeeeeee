@@ -9,24 +9,23 @@ let roleWorker = {
     /** @param {Creep} creep **/
     run: function(creep) {
 
-        if(creep.memory.working) {
-            for(let name in Game.creeps) {
-                let creep = Game.creeps[name];
-                if(creep.memory.job == 'harvester') {
-                    roleHarvester.run(creep);
-                }
-                if(creep.memory.job == 'upgrader') {
-                    roleUpgrader.run(creep);
-                }
-                if(creep.memory.job == 'builder') {
-                    roleBuilder.run(creep);
-                }
+        for(let name in Game.creeps) {
+            let creep = Game.creeps[name];
+            if(creep.memory.job == 'harvester') {
+                roleHarvester.run(creep);
             }
-	    }
+            if(creep.memory.job == 'upgrader') {
+                roleUpgrader.run(creep);
+            }
+            if(creep.memory.job == 'builder') {
+                roleBuilder.run(creep);
+            }
+        }
 	    if(!creep.memory.working) {
             let gatherTarget = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (
+                        structure.structureType == STRUCTURE_TOWER ||
                         structure.structureType == STRUCTURE_EXTENSION || 
                         structure.structureType == STRUCTURE_CONTAINER || 
                         structure.structureType == STRUCTURE_SPAWN) &&
@@ -43,7 +42,6 @@ let roleWorker = {
             else {
                 creep.memory.job = 'upgrader';
             }
-            creep.memory.working = true;
 	    }
 	}
 };
