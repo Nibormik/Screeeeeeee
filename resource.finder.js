@@ -33,7 +33,6 @@ let finder = {
 
         }
         if (harvest) {
-            creep.memory.working = false;
             let source = Game.getObjectById(creep.memory.source);
             if (!source) {
                 let targets = creep.room.find(FIND_SOURCES)
@@ -41,7 +40,7 @@ let finder = {
                 creep.memory.source = sources.id
             }
             if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+                creep.moveTo(source, {visualizePathStyle: {stroke: '#ffff00'}});
             }
 
         }
@@ -57,13 +56,12 @@ let finder = {
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;}});
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                    return
+                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#0000ff'}});
+                    return true
                 }
             }
             else {
                 mode = '';
-                creep.memory.working = false;
             }
         }
         if (mode == 'storage' || mode == '') {
@@ -75,13 +73,12 @@ let finder = {
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;}});
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                    return
+                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#0000ff'}});
+                    return true
                 }
             }
             else {
                 mode = '';
-                creep.memory.working = false;
             }
         }
         if (mode == 'tower' || mode == '') {
@@ -92,18 +89,12 @@ let finder = {
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;}});
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                    return
+                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ff0000'}});
+                    return true
                 }
             }
-            else {
-                creep.memory.working = false;
-            }
         }
-        else {
-            creep.memory.working = false;
-        }
-
+        return false
 	}
 };
 
