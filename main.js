@@ -1,14 +1,15 @@
-let roleWorker = require('role.worker');
 let roleUpgrader = require('role.upgrader');
 let spawnCheck = require('spawn.check');
 let roleBuilder = require('role.builder');
 let roleHarvester = require('role.harvester');
 let structureTower = require('structure.tower');
 
-let nrWorkers = 4;
+let harvesters = 4;
+let builders = 2;
+let upgraders = 2;
 
 module.exports.loop = function () {
-    spawnCheck.run(nrWorkers);
+    spawnCheck.run(harvesters,builders,upgraders);
     structureTower.run();
 
     for(let name in Memory.creeps) {
@@ -20,9 +21,6 @@ module.exports.loop = function () {
 
     for(let name in Game.creeps) {
         let creep = Game.creeps[name];
-        if(creep.memory.role == 'worker') {
-            roleWorker.run(creep);
-        }
         if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
