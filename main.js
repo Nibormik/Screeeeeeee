@@ -32,9 +32,4 @@ module.exports.loop = function () {
             roleHarvester.run(creep);
         }
     }
-    let memthing = Object.keys(Memory.creeps);
-    console.log(memthing)
-
-
-
 }
