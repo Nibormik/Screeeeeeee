@@ -1,21 +1,27 @@
 let spawnCheck = {
 
     /** @param {Creep} creep **/
-    run: function(workers) {
+    run: function(harvesters,builders,upgraders) {
 
-        let worker = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
+        let builder = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
         let upgrader = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+        let harvester = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
 
         
-        if(upgrader.length < 2) {
+        if(upgrader.length < upgraders) {
             let newName = 'Upgrader' + Game.time;
             console.log('Spawning new Upgrader: ' + newName);
             Game.spawns['Spawn_main'].spawnCreep([WORK,CARRY,MOVE], newName, {memory: {role: 'upgrader'}});
         }
-        if(worker.length < workers) {
-            let newName = 'W' + Game.time;
-            console.log('Spawning new Worker: ' + newName);
-            Game.spawns['Spawn_main'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, {memory: {role: 'worker'}});
+        if(builder.length < builders) {
+            let newName = 'Builder' + Game.time;
+            console.log('Spawning new builder: ' + newName);
+            Game.spawns['Spawn_main'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, {memory: {role: 'builder'}});
+        }
+        if(harvester.length < harvesters) {
+            let newName = 'Harvester' + Game.time;
+            console.log('Spawning new harvester: ' + newName);
+            Game.spawns['Spawn_main'].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE,MOVE], newName, {memory: {role: 'harvester'}});
         }
         
         if(Game.spawns['Spawn_main'].spawning) { 
