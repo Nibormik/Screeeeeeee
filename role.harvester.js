@@ -1,15 +1,31 @@
 let resourceFinder = require('resource.finder');
+let workManager = require('work.manager')
 
 let roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-	    if(creep.store.getFreeCapacity() > 0) {
+
+        if(creep.memory.task && creep.store[RESOURCE_ENERGY] == 0) {
+            creep.memory.task = false;
+            creep.say('🔄 harvest');
+	    }
+	    if(!creep.memory.task && creep.store.getFreeCapacity() == 0) {
+            creep.memory.task = true;
+	        creep.say('🚧 build');
+	    }
+        
+        if(!creep.memory.task) {
             resourceFinder.pickup(creep,true)
         }
         else {
-            resourceFinder.deposit(creep,'spawn')
+            let work = resourceFinder.deposit(creep,'spawn');
+            if (work == false && creep.memory.role == 'harvester') {
+                workManager.run(creep)
+            }
         }
+
+
 	}
 };
 
