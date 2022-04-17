@@ -17,20 +17,23 @@ let finder = {
                 let storage = containers[Math.floor(Math.random()*(containers.length))];
                 if(creep.withdraw(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(storage);
+                    return
                 }
             }
             else if (targets.length) {
                 let storage = targets[Math.floor(Math.random()*(targets.length))];
                 if(creep.withdraw(storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(storage);
+                    return
                 }
             }
             else {
-                let harvest = true;
+                harvest = true;
             }
 
         }
         if (harvest) {
+            creep.memory.working = false;
             let source = Game.getObjectById(creep.memory.source);
             if (!source) {
                 let targets = creep.room.find(FIND_SOURCES)
@@ -52,7 +55,6 @@ let finder = {
                         structure.structureType == STRUCTURE_EXTENSION || 
                         structure.structureType == STRUCTURE_SPAWN) &&
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;}});
-            console.log(targets+creep.memory.job)
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
@@ -71,7 +73,6 @@ let finder = {
                         structure.structureType == STRUCTURE_STORAGE || 
                         structure.structureType == STRUCTURE_CONTAINER) &&
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;}});
-            console.log(targets+creep.memory.job)
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
@@ -89,7 +90,6 @@ let finder = {
                     return (
                         structure.structureType == STRUCTURE_TOWER) &&
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;}});
-            console.log(targets+creep.memory.job)
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});

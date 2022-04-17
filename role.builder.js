@@ -4,7 +4,7 @@ let roleBuilder = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-
+		console.log(creep.memory.role+creep.memory.work)
 	    if(creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.building = false;
             creep.say('🔄 harvest');
@@ -18,7 +18,7 @@ let roleBuilder = {
 	        let targets = creep.room.find(FIND_CONSTRUCTION_SITES);
             if(targets.length > 0) {
                 if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#22ff22'}});
                 }
             }
 			else {
@@ -26,7 +26,7 @@ let roleBuilder = {
 			}
 	    }
 	    else {
-			resourceFinder.puckup(creep,false)
+			resourceFinder.pickup(creep,false)
 	    }
 	}
 };

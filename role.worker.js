@@ -42,6 +42,7 @@ let roleWorker = {
             else {
                 creep.memory.job = 'upgrader';
             }
+            creep.memory.working = true;
 	    }
 	}
 };
