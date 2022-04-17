@@ -1,12 +1,12 @@
-let roleUpgrader = require('role.upgrader');
-let spawnCheck = require('spawn.check');
-let roleBuilder = require('role.builder');
-let roleHarvester = require('role.harvester');
-let structureTower = require('structure.tower');
+const roleUpgrader = require('role.upgrader');
+const spawnCheck = require('spawn.check');
+const roleBuilder = require('role.builder');
+const roleHarvester = require('role.harvester');
+const structureTower = require('structure.tower');
 
-let harvesters = 4;
-let builders = 2;
-let upgraders = 2;
+const harvesters = 4;
+const builders = 2;
+const upgraders = 2;
 
 module.exports.loop = function () {
     spawnCheck.run(harvesters,builders,upgraders);
@@ -21,6 +21,7 @@ module.exports.loop = function () {
 
     for(let name in Game.creeps) {
         let creep = Game.creeps[name];
+        console.log(creep)
         if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
@@ -31,4 +32,9 @@ module.exports.loop = function () {
             roleHarvester.run(creep);
         }
     }
+    let memthing = Object.keys(Memory.creeps);
+    console.log(memthing)
+
+
+
 }
