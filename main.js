@@ -9,7 +9,7 @@ const builders = 2;
 const upgraders = 2;
 
 module.exports.loop = function () {
-    spawnCheck.run(harvesters,builders,upgraders);
+    spawnCheck.run([2,4,2]);
     structureTower.run();
 
     for(let name in Memory.creeps) {
@@ -21,7 +21,6 @@ module.exports.loop = function () {
 
     for(let name in Game.creeps) {
         let creep = Game.creeps[name];
-        console.log(creep)
         if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
