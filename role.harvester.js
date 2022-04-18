@@ -7,10 +7,12 @@ let roleHarvester = {
     run: function(creep) {
 
         if(creep.memory.task && creep.store[RESOURCE_ENERGY] == 0) {
+            delete creep.memory.target
             creep.memory.task = false;
             creep.say('🔄 harvest');
 	    }
 	    if(!creep.memory.task && creep.store.getFreeCapacity() == 0) {
+            delete creep.memory.target
             creep.memory.task = true;
 	        creep.say('🚧 build');
 	    }
