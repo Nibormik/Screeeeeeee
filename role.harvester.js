@@ -1,5 +1,6 @@
 let resourceFinder = require('resource.finder');
 let workManager = require('work.manager')
+let finder = require('finder');
 
 let roleHarvester = {
 
@@ -18,7 +19,7 @@ let roleHarvester = {
 	    }
         
         if(!creep.memory.task) {
-            resourceFinder.pickup(creep,true)
+            finder.pickup(creep,[FIND_SOURCES])
         }
         else {
             let work = resourceFinder.deposit(creep,'spawn');
