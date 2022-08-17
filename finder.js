@@ -9,7 +9,7 @@ let finder = {
             if (!types[i] == FIND_SOURCES) {
 
                 
-                if (!target) {ource
+                if (!target) {
                     creep.memory.source = targets[Math.floor(Math.random()*(targets.length))].id;
                     const targets = creep.room.find(FIND_STRUCTURES, {
                         filter: (structure) => {
