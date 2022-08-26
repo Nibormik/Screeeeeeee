@@ -6,7 +6,7 @@ const structureTower = require('structure.tower');
 
 const harvesters = 4;
 const builders = 2;
-const upgraders = 2;
+const upgraders = 1;
 
 module.exports.loop = function () {
     spawnCheck.run([builders,upgraders,harvesters]);

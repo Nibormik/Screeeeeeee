@@ -15,7 +15,7 @@ let roleHarvester = {
 	    if(!creep.memory.task && creep.store.getFreeCapacity() == 0) {
             delete creep.memory.target
             creep.memory.task = true;
-	        creep.say('🚧 build');
+	        creep.say('🚧 Refuel');
 	    }
         
         if(!creep.memory.task) {
