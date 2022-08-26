@@ -7,11 +7,11 @@ let spawnCheck = {
 
         if ((_.filter(Game.creeps)).length < nrwantedcreeps) {
 
-            const jobs = ["builder","harvester","upgrader"]
+            const jobs = ["builder","upgrader","harvester"]
             const Bspec = [WORK,WORK,CARRY,CARRY,MOVE,MOVE]
             const Hspec = [WORK,WORK,WORK,CARRY,MOVE,MOVE]
             const Uspec = [WORK,CARRY,MOVE]
-            const Specs = [Bspec,Hspec,Uspec]
+            const Specs = [Bspec,Uspec,Hspec]
 
             for(let i in Specs) {
                 const currentnum = _.filter(Game.creeps, (creep) => creep.memory.role == jobs[i]);

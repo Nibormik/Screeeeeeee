@@ -9,7 +9,7 @@ const builders = 2;
 const upgraders = 2;
 
 module.exports.loop = function () {
-    spawnCheck.run([2,4,2]);
+    spawnCheck.run([builders,upgraders,harvesters]);
     structureTower.run();
 
     for(let name in Memory.creeps) {
