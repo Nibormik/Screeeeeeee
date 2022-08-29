@@ -1,5 +1,5 @@
 let resourceFinder = require('resource.finder');
-let finder = require('finder');
+let find = require('find');
 
 let roleUpgrader = {
 
@@ -22,7 +22,7 @@ let roleUpgrader = {
             }
         }
         else {
-            finder.pickup(creep,[FIND_SOURCES])
+            find.Pickup(creep,[FIND_SOURCES])
         }
 	}
 };
