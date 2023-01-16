@@ -7,6 +7,7 @@ const structureTower = require('structure.tower');
 const harvesters = 4;
 const builders = 2;
 const upgraders = 1;
+const transporter = 1;
 
 module.exports.loop = function () {
     spawnCheck.run([builders,upgraders,harvesters]);
@@ -21,13 +22,13 @@ module.exports.loop = function () {
 
     for(let name in Game.creeps) {
         let creep = Game.creeps[name];
-        if(creep.memory.role == 'upgrader') {
+        if(creep.memory.role == 'U') {
             roleUpgrader.run(creep);
         }
-        if(creep.memory.role == 'builder') {
+        if(creep.memory.role == 'B') {
             roleBuilder.run(creep);
         }
-        if(creep.memory.role == 'harvester') {
+        if(creep.memory.role == 'H') {
             roleHarvester.run(creep);
         }
     }

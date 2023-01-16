@@ -22,7 +22,7 @@ let roleUpgrader = {
             }
         }
         else {
-            find.Pickup(creep,[FIND_SOURCES])
+            find.Pickup(creep,[FIND_SOURCES],[RESOURCE_ENERGY])
         }
 	}
 };

@@ -1,6 +1,6 @@
 let resourceFinder = require('resource.finder');
 let workManager = require('work.manager')
-
+let find = require('find')
 let roleBuilder = {
 
     /** @param {Creep} creep **/
@@ -24,11 +24,13 @@ let roleBuilder = {
 				}
 			}
 			else {
-				resourceFinder.pickup(creep,false)
+				find.Pickup(creep,[STRUCTURE_STORAGE,STRUCTURE_CONTAINER,FIND_SOURCES],[RESOURCE_ENERGY])
 			}
 		}
 		else {
-			workManager.run(creep)
+		    if (creep.memory.role = "B") {
+			    workManager.run(creep)
+		    }
 		}
 	}
 };
